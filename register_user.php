@@ -12,13 +12,13 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = $_POST['password']; // Hash the input password using SHA-256
     $cpassword = $_POST['cpassword']; // Hash the input confirm password using SHA-256
+    $role = $_POST['role'];
  
     if ($password == $cpassword) {
         $sql = "SELECT * FROM users WHERE email='$email'";
         $result = mysqli_query($conn, $sql);
         if (!$result->num_rows > 0) {
-            $sql = "INSERT INTO users (username, email, password)
-                    VALUES ('$username', '$email', '$password')";
+            $sql = "INSERT INTO users (username, email, password, role) VALUES ('$username', '$email', '$password', '$role')";
             $result = mysqli_query($conn, $sql);
             if ($result) {
                 echo "<script>alert('Selamat, pendaftaran berhasil!')</script>";
@@ -51,6 +51,7 @@ if (isset($_POST['submit'])) {
     <div class="container">
         <form action="" method="POST" class="login-email">
             <p class="login-text" style="font-size: 2rem; font-weight: 800;">Gabung Anggota</p>
+            <br>
             <div class="input-group">
                 <input type="text" placeholder="Username" name="username" value="" required>
             </div>
@@ -64,9 +65,17 @@ if (isset($_POST['submit'])) {
                 <input type="password" placeholder="Confirm Password" name="cpassword" value="" required>
             </div>
             <div class="input-group">
-                <button name="submit" class="btn">Daftar</button>
+                <select name="role" required>
+                    <option value="" disabled selected>Pilih Peran</option>
+                    <option value="user">User</option>
+                    <option value="owner">Owner</option>
+                </select>
             </div>
             <p class="login-register-text">Sudah punya akun? <a href="index.php">Login</a>.</p>
+            <br>
+            <div class="input-group">
+                <button name="submit" class="btn">Daftar</button>
+            </div>
         </form>
     </div>
 </body>

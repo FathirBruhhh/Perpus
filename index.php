@@ -53,12 +53,15 @@ if (isset($_POST['submit'])) {
     <div class="container">
         <form action="" method="POST" class="login-email">
             <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
+            <br>
             <div class="input-group">
                 <input type="email" placeholder="Email" name="email" required>
             </div>
             <div class="input-group">
                 <input type="password" placeholder="Password" name="password" required>
             </div>
+            <p class="login-register-text">Belum punya akun? <a href="register_user.php">Daftar Sekarang</a>.</p>
+            <br>
             <div class="input-group">
                 <button name="submit" class="btn">Login</button>
             </div>
